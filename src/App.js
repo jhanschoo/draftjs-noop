@@ -1,23 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Editor, EditorState, ContentState } from 'draft-js';
 import './App.css';
+import 'draft-js/dist/Draft.css';
 
 function App() {
+  const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText("hello")));
+  const handleChange = (newEditorState) => {
+    const s = newEditorState.getCurrentContent().getPlainText();
+    console.log(s);
+    if (s.includes("f")) {
+      setEditorState(newEditorState);
+    } else {
+      // setEditorState(EditorState.undo(newEditorState))
+    }
+  }
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Editor editorState={editorState} onChange={handleChange} />
       </header>
     </div>
   );
