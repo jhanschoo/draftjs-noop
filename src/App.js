@@ -12,6 +12,8 @@ function App() {
       setEditorState(newEditorState);
     } else {
       // setEditorState(EditorState.undo(newEditorState))
+      // Alternatively, see bug:
+      // setEditorState(EditorState.set(editorState, { currentContent: editorState.getCurrentContent() }));
     }
   }
   return (
