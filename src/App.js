@@ -11,8 +11,6 @@ function App() {
     if (s.length <= 5) {
       setEditorState(newEditorState);
     } else {
-      // setEditorState(EditorState.undo(newEditorState))
-      // Alternatively, see bug:
       setEditorState(EditorState.set(editorState, {}));
     }
   }
